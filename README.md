@@ -1,94 +1,93 @@
 # python_blockchain_app
 
-A simple tutorial for developing a blockchain application from scratch in Python.
+Aplicacion funcional para localhost.
 
-## What is blockchain? How it is implemented? And how it works?
+## Qué es blockchain? Cómo debo implementarlo? y cómo funciona?
 
 Please read the [step-by-step implementation tutorial](https://www.ibm.com/developerworks/cloud/library/cl-develop-blockchain-app-in-python/index.html) to get your answers :)
 
-## Instructions to run
+## Instrucciones para que ande
 
-Clone the project,
+Clonar el proyecto,
 
 ```sh
-$ git clone https://github.com/satwikkansal/python_blockchain_app.git
+$ git clone https://github.com/avilaroman/python_blockchain_app.git
 ```
+Instalar las dependencias,
 
-Install the dependencies,
-
-```sh
+`` sh
 $ cd python_blockchain_app
-$ pip install -r requirements.txt
-```
+$ pip install -r require.txt
+`` `
 
-Start a blockchain node server,
+Inicie un servidor de nodo blockchain,
 
-```sh
-# Windows users can follow this: https://flask.palletsprojects.com/en/1.1.x/cli/#application-discovery
-$ export FLASK_APP=node_server.py
-$ flask run --port 8000
-```
+`` sh
+# Los usuarios de Windows pueden seguir esto: https://flask.palletsprojects.com/en/1.1.x/cli/#application-discovery
+$ export FLASK_APP = node_server.py
+$ frasco ejecutar --port 8000
+`` `
 
-One instance of our blockchain node is now up and running at port 8000.
+Una instancia de nuestro nodo blockchain ahora está en funcionamiento en el puerto 8000.
 
 
-Run the application on a different terminal session,
+Ejecute la aplicación en una sesión de terminal diferente,
 
-```sh
+`` sh
 $ python run_app.py
-```
+`` `
 
-The application should be up and running at [http://localhost:5000](http://localhost:5000).
+La aplicación debe estar en funcionamiento en [http: // localhost: 5000] (http: // localhost: 5000).
 
-Here are a few screenshots
+Aquí hay algunas capturas de pantalla
 
-1. Posting some content
+1. Publicar algún contenido
 
-![image.png](https://github.com/satwikkansal/python_blockchain_app/raw/master/screenshots/1.png)
+! [image.png] (https://github.com/avilaroman/python_blockchain_app/raw/master/screenshots/1.png)
 
-2. Requesting the node to mine
+2. Solicitar el nodo para minar
 
-![image.png](https://github.com/satwikkansal/python_blockchain_app/raw/master/screenshots/2.png)
+! [image.png] (https://github.com/avilaroman/python_blockchain_app/raw/master/screenshots/2.png)
 
-3. Resyncing with the chain for updated data
+3. Resincronizando con la cadena para datos actualizados
 
-![image.png](https://github.com/satwikkansal/python_blockchain_app/raw/master/screenshots/3.png)
+! [image.png] (https://github.com/avilaroman/python_blockchain_app/raw/master/screenshots/3.png)
 
-To play around by spinning off multiple custom nodes, use the `register_with/` endpoint to register a new node. 
+Para jugar girando varios nodos personalizados, use el punto final `register_with /` para registrar un nuevo nodo.
 
-Here's a sample scenario that you might wanna try,
+Aquí hay un escenario de muestra que quizás quieras probar,
 
-```sh
-# already running
-$ flask run --port 8000 &
-# spinning up new nodes
-$ flask run --port 8001 &
-$ flask run --port 8002 &
-```
+`` sh
+# ya corriendo
+$ frasco ejecutar --port 8000 y
+# activando nuevos nodos
+$ frasco ejecutar --port 8001 y
+$ matraz --port 8002 y
+`` `
 
-You can use the following cURL requests to register the nodes at port `8001` and `8002` with the already running `8000`.
+Puede utilizar las siguientes solicitudes de cURL para registrar los nodos en el puerto `8001` y` 8002` con el `8000` ya en ejecución.
 
-```sh
+`` sh
 curl -X POST \
-  http://127.0.0.1:8001/register_with \
-  -H 'Content-Type: application/json' \
-  -d '{"node_address": "http://127.0.0.1:8000"}'
-```
+  http://127.0.0.1:8001/register_with \
+  -H 'Tipo de contenido: aplicación / json' \
+  -d '{"node_address": "http://127.0.0.1:8000"}'
+`` `
 
-```sh
+`` sh
 curl -X POST \
-  http://127.0.0.1:8002/register_with \
-  -H 'Content-Type: application/json' \
-  -d '{"node_address": "http://127.0.0.1:8000"}'
-```
+  http://127.0.0.1:8002/register_with \
+  -H 'Tipo de contenido: aplicación / json' \
+  -d '{"node_address": "http://127.0.0.1:8000"}'
+`` `
 
-This will make the node at port 8000 aware of the nodes at port 8001 and 8002, and make the newer nodes sync the chain with the node 8000, so that they are able to actively participate in the mining process post registration.
+Esto hará que el nodo en el puerto 8000 conozca los nodos en el puerto 8001 y 8002, y hará que los nodos más nuevos sincronicen la cadena con el nodo 8000, de modo que puedan participar activamente en el proceso de minería posterior al registro.
 
-To update the node with which the frontend application syncs (default is localhost port 8000), change `CONNECTED_NODE_ADDRESS` field in the [views.py](/app/views.py) file.
+Para actualizar el nodo con el que se sincroniza la aplicación frontend (el valor predeterminado es el puerto localhost 8000), cambie el campo `CONNECTED_NODE_ADDRESS` en el archivo [views.py] (/ app / views.py).
 
-Once you do all this, you can run the application, create transactions (post messages via the web inteface), and once you mine the transactions, all the nodes in the network will update the chain. The chain of the nodes can also be inspected by inovking `/chain` endpoint using cURL.
+Una vez que haga todo esto, puede ejecutar la aplicación, crear transacciones (publicar mensajes a través de la interfaz web), y una vez que extraiga las transacciones, todos los nodos de la red actualizarán la cadena. La cadena de los nodos también se puede inspeccionar invocando el punto final `/ chain` usando cURL.
 
-```sh
-$ curl -X GET http://localhost:8001/chain
-$ curl -X GET http://localhost:8002/chain
-```
+`` sh
+$ curl -X GET http: // localhost: 8001 / chain
+$ curl -X GET http: // localhost: 8002 / chain
+`` `
