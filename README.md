@@ -4,7 +4,7 @@ Aplicacion funcional para localhost.
 
 ## Qué es blockchain? Cómo debo implementarlo? y cómo funciona?
 
-Please read the [step-by-step implementation tutorial](https://www.ibm.com/developerworks/cloud/library/cl-develop-blockchain-app-in-python/index.html) to get your answers :)
+Lee el post [paso a paso implementacion](https://www.ibm.com/developerworks/cloud/library/cl-develop-blockchain-app-in-python/index.html) para obtener tus respuestas :) (en inglés)
 
 ## Instrucciones para que ande
 
