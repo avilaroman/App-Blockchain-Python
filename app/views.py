@@ -6,8 +6,8 @@ from flask import render_template, redirect, request
 
 from app import app
 
-# The node with which our application interacts, there can be multiple
-# such nodes as well.
+# El nodo con el que nuestra aplicación Interactuará. Luego pueden agregarse nuevos nodos, para respaldar.
+# 
 CONNECTED_NODE_ADDRESS = "http://127.0.0.1:8000"
 
 posts = []
@@ -15,8 +15,8 @@ posts = []
 
 def fetch_posts():
     """
-    Function to fetch the chain from a blockchain node, parse the
-    data and store it locally.
+    Funccion para traer la cadena del nodo Blockchain,
+    Hacer Parse a la info y almacenarla localmente.
     """
     get_chain_address = "{}/chain".format(CONNECTED_NODE_ADDRESS)
     response = requests.get(get_chain_address)
@@ -38,8 +38,8 @@ def fetch_posts():
 def index():
     fetch_posts()
     return render_template('index.html',
-                           title='YourNet: Decentralized '
-                                 'content sharing',
+                           title='Medexis: descentralizada '
+                                 'Contenido compartido y verificable',
                            posts=posts,
                            node_address=CONNECTED_NODE_ADDRESS,
                            readable_time=timestamp_to_string)
@@ -48,7 +48,7 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit_textarea():
     """
-    Endpoint to create a new transaction via our application.
+    Endpoint para crear una nueva transacción por medio de nuestra aplicación.
     """
     post_content = request.form["content"]
     author = request.form["author"]
@@ -58,7 +58,7 @@ def submit_textarea():
         'content': post_content,
     }
 
-    # Submit a transaction
+    # Enviar una transacción
     new_tx_address = "{}/new_transaction".format(CONNECTED_NODE_ADDRESS)
 
     requests.post(new_tx_address,
