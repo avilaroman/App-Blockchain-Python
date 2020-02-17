@@ -1,4 +1,4 @@
-# python_blockchain_app
+# App Blockchain Funcional
 
 Aplicacion funcional para localhost.
 
@@ -59,9 +59,9 @@ Aquí hay un escenario de muestra que quizás quieras probar,
 
 `` sh
 # ya corriendo
-$ frasco ejecutar --port 8000 y
+$ flask run --port 8000 y
 # activando nuevos nodos
-$ frasco ejecutar --port 8001 y
+$ flask run --port 8001 y
 $ matraz --port 8002 y
 `` `
 
